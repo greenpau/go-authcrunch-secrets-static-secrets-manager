@@ -44,7 +44,7 @@ coverage:
 	@#go tool cover -help
 	@go tool cover -html=.coverage/coverage.out -o .coverage/coverage.html
 	@go test -covermode=count -coverprofile=.coverage/coverage.out ./...
-	@go tool cover -func=.coverage/coverage.out | grep -v "100.0"
+	@go tool cover -func=.coverage/coverage.out
 	@echo "$@: complete"
 
 clean:
@@ -57,7 +57,6 @@ qtest: covdir
 	@#time richgo test $(VERBOSE) $(TEST) -coverprofile=.coverage/coverage.out -run TestGetSecret ./*.go
 	@time richgo test $(VERBOSE) $(TEST) -coverprofile=.coverage/coverage.out -run TestGetSecretByKey ./*.go
 	@go tool cover -html=.coverage/coverage.out -o .coverage/coverage.html
-	@#go tool cover -func=.coverage/coverage.out | grep -v "100.0"
 	@go tool cover -func=.coverage/coverage.out
 	@echo "$@: complete"
 
